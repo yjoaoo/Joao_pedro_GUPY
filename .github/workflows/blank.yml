@@ -1,36 +1,113 @@
-# This is a basic workflow to help you get started with Actions
+# ---------------------------------------- EXERCICIO 1 ----------------------------------------------------
+INDICE = 13
+SOMA = 0
+K = 0
 
-name: CI
+while K < INDICE:
+    K += 1
+    SOMA += K
 
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+print(SOMA)
+# Ao final do processamento, o valor da variável SOMA será 91.
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+# ---------------------------------------- EXERCICIO 2 ----------------------------------------------------
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+def pertence_fibonacci(numero):
+    a, b = 0, 1
+    while b < numero:
+        a, b = b, a + b
+    return b == numero or numero == 0
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+numero = int(input("Informe um número: "))
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+if pertence_fibonacci(numero):
+    print(f"O número {numero} pertence à sequência de Fibonacci.")
+else:
+    print(f"O número {numero} NÃO pertence à sequência de Fibonacci.")
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+# ---------------------------------------- EXERCICIO 3 ----------------------------------------------------
+
+import json
+
+dados_json = '''
+{
+    "faturamento_diario": [0, 22174.16, 24537.66, 0, 26139.61, 0, 0, 26742.66, 0, 42889.22, 46251.17, 11191.47, 48924.24, 18419.26, 0, 0, 4355.06, 13327.10, 0, 0, 25681.83, 1718.12, 0]
+}
+'''
+
+dados = json.loads(dados_json)
+faturamento = [valor for valor in dados["faturamento_diario"] if valor > 0]
+
+menor_faturamento = min(faturamento)
+maior_faturamento = max(faturamento)
+
+media_mensal = sum(faturamento) / len(faturamento)
+
+dias_acima_media = sum(1 for valor in faturamento if valor > media_mensal)
+
+print(f"Menor valor: R$ {menor_faturamento:.2f}")
+print(f"Maior valor: R$ {maior_faturamento:.2f}")
+print(f"Dias acima da média: {dias_acima_media}")
+
+# EXEMPLO DE SAIDA: Menor valor: R$ 373.78
+#                   Maior valor: R$ 48924.24
+#                   Dias acima da média: 10
+
+# ---------------------------------------- EXERCICIO 4 ----------------------------------------------------
+
+faturamento = {
+    "SP": 67836.43,
+    "RJ": 36678.66,
+    "MG": 29229.88,
+    "ES": 27165.48,
+    "Outros": 19849.53
+}
+
+faturamento_total = sum(faturamento.values())
+
+for estado, valor in faturamento.items():
+    percentual = (valor / faturamento_total) * 100
+    print(f"{estado}: {percentual:.2f}%")
+
+# EXEMPLO DE SAIDA: SP: 37.53%
+#                   RJ: 20.29%
+#                   MG: 16.17%
+#                   ES: 15.03%
+#                   Outros: 10.98%
+
+# ---------------------------------------- EXERCICIO 5 ----------------------------------------------------
+
+def inverter_string(string):
+    string_invertida = ''
+    for char in string:
+        string_invertida = char + string_invertida
+    return string_invertida
+
+entrada = "exemplo"  
+
+print(inverter_string(entrada))
+
+# Se a string for "exemplo", a saída será: olpmexe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
